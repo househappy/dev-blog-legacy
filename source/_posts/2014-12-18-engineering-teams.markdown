@@ -6,11 +6,14 @@ date: 2014-12-18 21:01:50 -0800
 comments: true
 categories:
 ---
-Househappy has five small engineering teams delineated by expertise: Backend,
+Househappy has five engineering teams delineated by expertise: Backend,
 Web Front End, iOS, DevOps and QA.
 
 The Backend team focuses on the server-side systems, including the API and the
-data import system.
+data import system. Most of the backend code is Ruby on Rails, while part of
+the data import system is written in Go. Househappy uses PostgreSQL as its
+master database. Background processing is handled by Sidekiq, with Redis
+holding the job queue.
 
 The Web Front End team designs, develops and maintains the Spine JavaScript
 application and the automated emails. The Spine application is deployed
@@ -41,7 +44,8 @@ leverage for switching to another team, or it can be just something valuable to
 put on their résumé. In the short term, it's a way to get their task done
 without having to wait for another team to implement a portion of it.
 
-The QA team manages testing of all the teams' work.
+The QA team manages testing of all the teams' work. It tests deployments,
+reports bugs and helps write tests.
 
 The Backend and Web Front End teams both have daily standing meetings, called
 "standups". These short meetings take place at the beginning of the day.
@@ -61,6 +65,6 @@ a volunteer basis.
 
 Nestled in heart of Portland's Pearl district, the Househappy office is close to
 a large number of restaurants, bars, coffee shops, food carts, and a Whole Foods
-grocery store. The interior is well-designed and comfortable. It includes three
+grocery store. The interior is beautifully designed and comfortable. It includes three
 lounge areas and a café-style area with small tables and a bar. The biggest
 meeting room features a Nintendo Wii U which gets a frequent workout.
