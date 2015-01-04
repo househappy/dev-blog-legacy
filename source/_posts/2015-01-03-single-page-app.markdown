@@ -1,16 +1,17 @@
 ---
 published: false
 layout: post
-title: "Househappy Architecture"
-date: 2014-12-18 21:01:50 -0800
+title: "Single Page App"
+date: 2015-01-03 19:11:25 -0800
 comments: true
 categories:
 ---
-* Overview
-  * Single-page app
-  * Statically-deployed JavaScript and CSS assets to CDN
-  * Rails-based API
-  * Cluster that processes property listings
+* New SpineJS UI, recently released
+* Statically-deployed JavaScript and CSS assets to CDN
+* iOS in ObjectiveC, recently released
+
+* Rails-based API
+* Cluster that processes property listings
 
 * VMs
   * Database
