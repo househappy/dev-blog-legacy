@@ -4,7 +4,7 @@ title: "working with init"
 date: 2015-04-13 10:05:01 -0700
 comments: true
 categories:
-published: true 
+published: false 
 ---
 ##Create a linux startup service and init.d script from scratch, using chef and debian linux. 
 
