@@ -8,7 +8,7 @@ published: false
 ---
 ##Create a linux startup service and init.d script from scratch, using chef and debian linux. 
 
-As a Devops engineer at Househappy.org, I have been tasked to help maintain up-time for our servers and services they provide. If a server does have to reboot unexpectedly it would be nice to have some kind of assurance that when our servers come back online they automatically start there services. 
+As a Devops engineer at Househappy.org, I have been tasked to help maintain up-time for our servers and services they provide. If a server does have to reboot unexpectedly it would be nice to have some kind of assurance that when our servers come back online they automatically start their services. 
 
 Case in point: Our cloud server provider linode, very subtle notified us that our servers were due for an update and needed to be rebooted inorder for the update to take effect. Of course they formatted the email to look almost identical to a lot of the other email noise they send us, and I failed to recognize that this was serious and need my urgent attention. So time passed and the weekend rolled around, and all of our pager services started notifing us of our impending doom. One of the major problem with this is that many of our homegrown services with out init.d script failed to start back up after reboot. I would like to not have to worry about that happening again, so I decided to do my research. 
 
