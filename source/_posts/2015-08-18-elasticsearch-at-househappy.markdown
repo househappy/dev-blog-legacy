@@ -7,6 +7,10 @@ categories:
 ---
 ## How we use Elasticsearch
 
+Earlier in 2015, Househappy switched its search autocomplete from Soulmate to
+Elasticsearch. More recently, we switched the main search results to from PostgreSQL to
+Elasticsearch. Here, I'll talk about our Elasticsearch integration.
+
 ## Technical Specs
 
 * Househappy uses one Elasticsearch daemon, running on a VPS
