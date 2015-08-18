@@ -8,8 +8,8 @@ categories:
 ## How we use Elasticsearch
 
 Earlier in 2015, Househappy switched its search autocomplete from Soulmate to
-Elasticsearch. More recently, we switched the main search results to from PostgreSQL to
-Elasticsearch. Here, I'll talk about our Elasticsearch integration.
+Elasticsearch. More recently, we switched the main search results from PostgreSQL to
+Elasticsearch. Here, I'll describe our Elasticsearch integration.
 
 ## Technical Specs
 
