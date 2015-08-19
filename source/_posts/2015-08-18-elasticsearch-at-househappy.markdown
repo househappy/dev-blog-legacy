@@ -40,9 +40,9 @@ For autocomplete, The Elasticsearch query is a fully-analyzed text search.
 ![Autocomplete Query to Elasticsearch](http://cl.ly/image/0T1K1n0R3j3W/autocomplete_es_query.jpg)
 
 See the entire [JSON query here](https://gist.github.com/moxley/d8935387133476db0ba0).
-It's 174 lines of formatted JSON. The Elasticsearch's query DSL is not the
+It's 174 lines of formatted JSON. Elasticsearch's query DSL is not the
 prettiest language I've seen. It kind of reminds me of [Postscript](https://en.wikipedia.org/wiki/PostScript), in that it is a language
-meant to be written by programs.
+meant to be written by programs instead of programmers.
 
 ### "Gridview" Search Results
 
