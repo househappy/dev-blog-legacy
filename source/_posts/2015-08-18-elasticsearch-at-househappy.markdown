@@ -9,7 +9,8 @@ categories:
 
 Earlier in 2015, Househappy switched its search autocomplete from
 [Soulmate](https://github.com/seatgeek/soulmate) to
-Elasticsearch. More recently, we switched the main search results from PostgreSQL to
+[Elasticsearch](https://www.elastic.co/products/elasticsearch).
+More recently, we switched the main search results from PostgreSQL to
 Elasticsearch. Here, I'll describe the Elasticsearch integration.
 
 ## Technical Specs
