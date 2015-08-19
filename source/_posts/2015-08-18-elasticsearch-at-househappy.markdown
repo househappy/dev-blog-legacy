@@ -5,8 +5,6 @@ date: 2015-08-18 16:36:26 -0700
 comments: true
 categories:
 ---
-## How We Use Elasticsearch
-
 Earlier in 2015, Househappy switched its search autocomplete from
 [Soulmate](https://github.com/seatgeek/soulmate) to
 [Elasticsearch](https://www.elastic.co/products/elasticsearch).
