@@ -21,10 +21,10 @@ Elasticsearch. Here, I'll describe our Elasticsearch integration.
 
 ![Autocomplete UI](http://cl.ly/image/45331v01272P/portland-autocomplete-ui.jpg)
 
-The autocomplete endpoint returns property listings, schools, zip codes, neighborhoods, cities, metro areas and states that match the
+The autocomplete endpoint returns Property Listings, schools, zip codes, neighborhoods, cities, metro areas and states that match the
 phrase the user is typing into the search box.
 
-The JavaScript frontend calls an API, which in turn builds and executes the Elasticsearch queries and returns the results. For property listings,
+The JavaScript frontend calls an API, which in turn builds and executes the Elasticsearch queries and returns the results. For Property Listings,
 the response from the API for the above query looks like this:
 
 ![Property Listings matching "port"](http://cl.ly/image/1C0m312t0u3d/download/autocomplete-listings-endpoint.jpg)
@@ -43,7 +43,7 @@ See the entire [JSON query here](https://gist.github.com/moxley/d8935387133476db
 
 ![Primary Search Results](http://cl.ly/image/1M2M1a2s3Y1L/search-results.jpg)
 
-The primary ("gridview") search generates from a much more simple Elasticsearch
+The primary ("gridview") search generates a much more simple Elasticsearch
 query than the autocomplete. It finds properties with an exact-match by foreign key:
 
 ```json
@@ -67,7 +67,7 @@ query than the autocomplete. It finds properties with an exact-match by foreign 
 }
 ```
 
-In the above example, it searches properties belonging to `city_id=32` (Portland, OR),
+In the above example, it searches Property Listings belonging to `city_id=32` (Portland, OR),
 with a public status of `available`. We also add filters and sorting to this
 query, based on the filters and sorts the user selects.
 
@@ -88,7 +88,7 @@ convert an ActiveRecord instance to an Elasticsearch document. This is the
 same gem we use to serialize ActiveRecord instances to API responses, and to
 deserialize API requests to ActiveRecord instances.
 
-We define what's called a representer that essentially defines the schema of the
+We define a "representer" that essentially defines the schema of the
 document. That is, it describes which model attributes and which associations,
 and which association attributes will be in the document. It can also add
 virtual attributes that don't even exist on the model.
@@ -118,8 +118,8 @@ to save the document to Elasticsearch.
 ### Batch Loading
 
 For every type of Elasticsearch document we store, we created a `rake` task
-that loads every corresponding record from PostgreSQL to Elasticsearch for
-the given document type.
+that loads every corresponding record of that type from PostgreSQL to
+Elasticsearch.
 
 ### Incremental Synchronizing
 
@@ -146,8 +146,8 @@ documents to Elasticsearch takes time, and it adds risk to the ActiveRecord
 lifecycle. This extra time and risk is too much for batch imports that import
 thousands of properties every hour.
 
-We use the pub-sub model because the ActiveRecord callbacks shouldn't need to
-know all the different Elasticsearch document types that need to
+We use the pub-sub pattern because it's unreasonable to expect the ActiveRecord
+callbacks to know all the different Elasticsearch document types that need to
 re-synchronize when a particular model changes.
 
 ## Challenges
