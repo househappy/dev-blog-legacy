@@ -158,6 +158,6 @@ re-synchronize when a particular model changes.
 ## Challenges
 
 * Documents made up of data from multiple ActiveRecord models
-* Synchronizing changes from one model to document types of another model
+* Synchronizing changes from one model to documents of another model
 * Keeping the number of synchronization jobs low
 * Deploying changes to document schemas
