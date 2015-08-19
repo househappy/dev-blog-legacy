@@ -5,7 +5,7 @@ date: 2015-08-18 16:36:26 -0700
 comments: true
 categories:
 ---
-## How we use Elasticsearch
+## How We Use Elasticsearch
 
 Earlier in 2015, Househappy switched its search autocomplete from
 [Soulmate](https://github.com/seatgeek/soulmate) to
@@ -123,7 +123,7 @@ to save the document to Elasticsearch.
 ### Batch Loading
 
 For every type of Elasticsearch document we store, we created a `rake` task
-that loads every corresponding record of that type from PostgreSQL to
+that loads every record of that type from PostgreSQL to
 Elasticsearch.
 
 ### Incremental Synchronizing
@@ -161,3 +161,4 @@ re-synchronize when a particular model changes.
 * Synchronizing changes from one model to documents of another model
 * Keeping the number of synchronization jobs low
 * Deploying changes to document schemas
+x
