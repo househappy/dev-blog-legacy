@@ -151,7 +151,7 @@ in that post code as `property_count`. Every time a property is added or deleted
 `property_count` on `City`, `State`, `Neighborhood` and multiple `Schools`. Instead
 of publishing events when a `Property` is added or deleted, we add the property's
 `post_code_id`, `city_id`, `state_id`, `neighborhood_id` and `school_id` to
-a set in Redis. Then we run a cron job every 6 hours to update the documents
+a Redis set. Then we run a cron job every 6 hours to update the documents
 corresponding to each of those IDs.
 
 This alternative approach to synchronization reduced the number of pub-sub
@@ -163,4 +163,3 @@ jobs substantially.
 * Synchronizing changes from one model to documents of another model
 * Keeping the number of synchronization jobs low
 * Deploying changes to document schemas
-x
