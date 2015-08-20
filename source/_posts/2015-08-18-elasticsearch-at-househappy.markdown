@@ -120,38 +120,42 @@ to save the document to Elasticsearch.
 
 ### Batch Loading
 
-For every type of Elasticsearch document we store, we created a `rake` task
+For every type of Elasticsearch document we store, we have a `rake` task
 that loads every record of that type from PostgreSQL to
-Elasticsearch.
+Elasticsearch. The records can be loaded synchronously, or asynchronously in
+Sidekiq jobs.
 
-### Incremental Synchronizing
+### Incremental Synchronizing 1: Pub-sub model
 
-We use ActiveRecord callbacks that in turn call asynchronous Sidekiq jobs to
-synchronize model changes to Elasticsearch. The Sidekiq workers follow the
-publish-subscribe pattern, where a model creates a job that publishes the fact it has changed, and that job creates a job for every subscriber of that type of
-message. The subscribers in this case are concerned with inspecting the change,
-making the decision to take action or ignore it, and if action is warranted,
-generate and save a document to Elasticsearch.
+![Model Callback Synchronization](https://a0d473108939e69bc312-a7320ee400b9f4f3d926f788fd2b7ad7.ssl.cf2.rackcdn.com/tech-blog/pubsub-2.jpg)
 
-For example, we maintain Property Listing documents for properties that are up for sale. These properties have one or more photos. The URLs
-and meta-data of these photos are stored with the property document in
-Elasticsearch. When a new photo is added, the property document must be updated
-with the new photo.
+We use a publish-subscribe pattern to persist model changes to Elasticsearch documents.
+ActiveRecord callbacks publish "change" events. These events are broadcast to
+asynchronous Sidekiq jobs that write the changes to Elasticsearch.
 
-In the Photo model, there is an ActiveRecord listener that generates a
-"broadcast" Sidekiq worker. This worker, in turn, generates Sidekiq jobs
-for all the subscribers subscribed to changes to the Photo model. One of these
-subscribers is the `SyncProperty` subscriber, which takes the Photo change,
-generates a property document and saves that document to Elasticsearch.
+A single Elasticsearch document is made up of data from multiple models, so
+when one model updates, it may require an update to another document type.
+For instance, our `Property` has many `Photos`. When a `Photo` is created or
+updated, the `Property` document must be saved with an updated list of photos.
 
-We use Sidekiq to synchronize model changes to Elasticsearch because adding
-documents to Elasticsearch takes time, and it adds risk to the ActiveRecord
-lifecycle. This extra time and risk is too much for batch imports that import
-thousands of properties every hour.
+### Incremental Synchronizing 2: Tracking Property Creation
 
-We use the pub-sub pattern because it's unreasonable to expect the ActiveRecord
-callbacks to know all the different Elasticsearch document types that need to
-re-synchronize when a particular model changes.
+While the pub-sub model is flexible and powerful, it creates a large
+number of Sidekiq jobs in our property listing import pipeline. The number of
+jobs was enough of an issue that we decided to optimize some types
+of synchronization.
+
+For instance, `PostCode` documents record the number of property listings
+in that post code as `property_count`. Every time a property is added or deleted,
+`PostCode.property_count` must be updated in the document. There is also a
+`property_count` on `City`, `State`, `Neighborhood` and multiple `Schools`. Instead
+of publishing events when a `Property` is added or deleted, we add the property's
+`post_code_id`, `city_id`, `state_id`, `neighborhood_id` and `school_id` to
+a set in Redis. Then we run a cron job every 6 hours to update the documents
+corresponding to each of those IDs.
+
+This alternative approach to synchronization reduced the number of pub-sub
+jobs substantially.
 
 ## Challenges
 
