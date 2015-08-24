@@ -125,7 +125,7 @@ that loads every record of that type from PostgreSQL to
 Elasticsearch. The records can be loaded synchronously, or asynchronously in
 Sidekiq jobs.
 
-### Incremental Synchronizing 1: Pub-sub model
+### Incremental Synchronization 1: Pub-sub model
 
 ![Model Callback Synchronization](https://a0d473108939e69bc312-a7320ee400b9f4f3d926f788fd2b7ad7.ssl.cf2.rackcdn.com/tech-blog/pubsub-2.jpg)
 
@@ -138,7 +138,7 @@ when one model updates, it may require an update to another document type.
 For instance, our `Property` has many `Photos`. When a `Photo` is created or
 updated, the `Property` document must be saved with an updated list of photos.
 
-### Incremental Synchronizing 2: Tracking Property Creation
+### Incremental Synchronization 2: Tracking Property Creation
 
 While the pub-sub model is flexible and powerful, it creates a large
 number of Sidekiq jobs in our property listing import pipeline. The number of
