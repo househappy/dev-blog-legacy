@@ -1,4 +1,5 @@
 ---
+published: true
 layout: post
 title: "How We use Elasticsearch at Househappy"
 date: 2015-08-18 16:36:26 -0700
