@@ -75,7 +75,7 @@ In the above example, it searches Property Listings belonging to `city_id=32` (P
 with a public status of `available`. We also add filters and sorting to this
 query, based on the filters and sorts the user selects.
 
-Before using Elasticsearch for the primary search, we queried PostgreSQL
+Before using Elasticsearch for the grid view, we queried PostgreSQL
 directly. The primary table has millions of records, and the search query joined as
 many as 10 other tables. After switching to Elasticsearch for the query, using
 denormalized data, site performance improved dramatically.
@@ -121,7 +121,7 @@ to save the document to Elasticsearch.
 
 ### Batch Loading
 
-For every type of Elasticsearch document we store, we have a `rake` task
+For every type of Elasticsearch document we store, there is a `rake` task
 that loads every record of that type from PostgreSQL to
 Elasticsearch. The records can be loaded synchronously, or asynchronously in
 Sidekiq jobs.
@@ -142,8 +142,8 @@ updated, the `Property` document must be saved with an updated list of photos.
 ### Incremental Synchronization 2: Tracking Property Creation
 
 While the pub-sub model is flexible and powerful, it creates a large
-number of Sidekiq jobs in our property listing import pipeline. The number of
-jobs was enough of an issue that we decided to optimize some types
+number of Sidekiq jobs when properties are imported in bulk. The number of
+synchronization jobs was enough of an issue that we decided to optimize some types
 of synchronization.
 
 For instance, `PostCode` documents record the number of property listings
@@ -159,6 +159,8 @@ This alternative approach to synchronization reduced the number of pub-sub
 jobs substantially.
 
 ## Challenges
+
+There are several challenges when integrating Elasticsearch into the architecture:
 
 * Documents made up of data from multiple ActiveRecord models
 * Synchronizing changes from one model to documents of another model
