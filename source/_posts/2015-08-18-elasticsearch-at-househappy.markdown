@@ -47,7 +47,7 @@ meant to be written by programs instead of programmers.
 
 ![Primary Search Results](http://cl.ly/image/1M2M1a2s3Y1L/search-results.jpg)
 
-The primary ("gridview") search generates a much more simple Elasticsearch
+The gridview search generates a much more simple Elasticsearch
 query than the autocomplete. It finds properties with an exact-match by foreign key:
 
 ```json
@@ -75,7 +75,7 @@ In the above example, it searches Property Listings belonging to `city_id=32` (P
 with a public status of `available`. We also add filters and sorting to this
 query, based on the filters and sorts the user selects.
 
-Before using Elasticsearch for the grid view, we queried PostgreSQL
+Before using Elasticsearch for the gridview, we queried PostgreSQL
 directly. The primary table has millions of records, and the search query joined as
 many as 10 other tables. After switching to Elasticsearch for the query, using
 denormalized data, site performance improved dramatically.
