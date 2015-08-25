@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Househappy Tech Blog]]></title>
+  <link href="http://househappy.github.io/atom.xml" rel="self"/>
+  <link href="http://househappy.github.io/"/>
+  <updated>2015-08-25T08:45:23-07:00</updated>
+  <id>http://househappy.github.io/</id>
+  <author>
+    <name><![CDATA[Househappy]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+</feed>
