@@ -189,7 +189,7 @@ query than the autocomplete. It finds properties with an exact-match by foreign 
 with a public status of <code>available</code>. We also add filters and sorting to this
 query, based on the filters and sorts the user selects.</p>
 
-<p>Before using Elasticsearch for the primary search, we queried PostgreSQL
+<p>Before using Elasticsearch for the grid view, we queried PostgreSQL
 directly. The primary table has millions of records, and the search query joined as
 many as 10 other tables. After switching to Elasticsearch for the query, using
 denormalized data, site performance improved dramatically.</p>
@@ -244,7 +244,7 @@ to save the document to Elasticsearch.</p>
 
 <h3>Batch Loading</h3>
 
-<p>For every type of Elasticsearch document we store, we have a <code>rake</code> task
+<p>For every type of Elasticsearch document we store, there is a <code>rake</code> task
 that loads every record of that type from PostgreSQL to
 Elasticsearch. The records can be loaded synchronously, or asynchronously in
 Sidekiq jobs.</p>
@@ -265,8 +265,8 @@ updated, the <code>Property</code> document must be saved with an updated list o
 <h3>Incremental Synchronization 2: Tracking Property Creation</h3>
 
 <p>While the pub-sub model is flexible and powerful, it creates a large
-number of Sidekiq jobs in our property listing import pipeline. The number of
-jobs was enough of an issue that we decided to optimize some types
+number of Sidekiq jobs when properties are imported in bulk. The number of
+synchronization jobs was enough of an issue that we decided to optimize some types
 of synchronization.</p>
 
 <p>For instance, <code>PostCode</code> documents record the number of property listings
@@ -282,6 +282,8 @@ corresponding to each of those IDs.</p>
 jobs substantially.</p>
 
 <h2>Challenges</h2>
+
+<p>There are several challenges when integrating Elasticsearch into the architecture:</p>
 
 <ul>
 <li>Documents made up of data from multiple ActiveRecord models</li>
