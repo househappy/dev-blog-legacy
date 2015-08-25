@@ -1,24 +1,105 @@
-<?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Househappy Tech Blog]]></title>
-  <link href="http://dev-blog.househappy.org/atom.xml" rel="self"/>
-  <link href="http://dev-blog.househappy.org/"/>
-  <updated>2015-08-25T09:17:47-07:00</updated>
-  <id>http://dev-blog.househappy.org/</id>
-  <author>
-    <name><![CDATA[Househappy Inc.]]></name>
-    
-  </author>
-  <generator uri="http://octopress.org/">Octopress</generator>
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>How We Use Elasticsearch at Househappy - Househappy Tech Blog</title>
+  <meta name="author" content="Househappy Inc.">
 
   
-  <entry>
-    <title type="html"><![CDATA[How We Use Elasticsearch at Househappy]]></title>
-    <link href="http://dev-blog.househappy.org/blog/2015/08/18/elasticsearch-at-househappy/"/>
-    <updated>2015-08-18T16:36:26-07:00</updated>
-    <id>http://dev-blog.househappy.org/blog/2015/08/18/elasticsearch-at-househappy</id>
-    <content type="html"><![CDATA[<p>Earlier in 2015, Househappy switched its search autocomplete from
+  <meta name="description" content="Earlier in 2015, Househappy switched its search autocomplete from
+Soulmate to
+Elasticsearch.
+More recently, we switched the main search results from &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://dev-blog.househappy.org/blog/2015/08/18/elasticsearch-at-househappy">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Househappy Tech Blog" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+<link rel="shortcut icon" type="image/x-icon" href="https://0a194e6307a2222ecdb8-4b045bc503fb09f4d2bea988b0dd853f.ssl.cf2.rackcdn.com/favicon.ico" />
+<link rel="shortcut icon" type="image/ico" href="https://0a194e6307a2222ecdb8-4b045bc503fb09f4d2bea988b0dd853f.ssl.cf2.rackcdn.com/favicon.ico">
+<link rel="shortcut icon" sizes="196x196" href="https://0a194e6307a2222ecdb8-4b045bc503fb09f4d2bea988b0dd853f.ssl.cf2.rackcdn.com/shortcut-icon-196x196.png">
+<link rel="shortcut icon" sizes="128x128" href="https://0a194e6307a2222ecdb8-4b045bc503fb09f4d2bea988b0dd853f.ssl.cf2.rackcdn.com/shortcut-icon-128x128.png">
+<link rel="apple-touch-startup-image" href="https://0a194e6307a2222ecdb8-4b045bc503fb09f4d2bea988b0dd853f.ssl.cf2.rackcdn.com/apple-touch-startup-image-320×460-startup.png">
+<link rel="apple-touch-icon" href="https://0a194e6307a2222ecdb8-4b045bc503fb09f4d2bea988b0dd853f.ssl.cf2.rackcdn.com/apple-touch-icon-precomposed.png">
+<link rel="apple-touch-icon" sizes="57x57" href="https://0a194e6307a2222ecdb8-4b045bc503fb09f4d2bea988b0dd853f.ssl.cf2.rackcdn.com/apple-touch-icon-57×57-precomposed.png">
+<link rel="apple-touch-icon" sizes="72x72" href="https://0a194e6307a2222ecdb8-4b045bc503fb09f4d2bea988b0dd853f.ssl.cf2.rackcdn.com/apple-touch-icon-72×72-precomposed.png">
+<link rel="apple-touch-icon" sizes="114x114" href="https://0a194e6307a2222ecdb8-4b045bc503fb09f4d2bea988b0dd853f.ssl.cf2.rackcdn.com/apple-touch-icon-114×114-precomposed.png">
+<link rel="apple-touch-icon" sizes="144x144" href="https://0a194e6307a2222ecdb8-4b045bc503fb09f4d2bea988b0dd853f.ssl.cf2.rackcdn.com/apple-touch-icon-144×144-precomposed.png">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Househappy Tech Blog</a></h1>
+  
+    <h2>Building a real estate platform.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:dev-blog.househappy.org" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="https://www.househappy.org/">Househappy.org</a></li>
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">How We Use Elasticsearch at Househappy</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-08-18T16:36:26-07:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>18</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>4:36 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Earlier in 2015, Househappy switched its search autocomplete from
 <a href="https://github.com/seatgeek/soulmate">Soulmate</a> to
 <a href="https://www.elastic.co/products/elasticsearch">Elasticsearch</a>.
 More recently, we switched the main search results from PostgreSQL to
@@ -209,7 +290,124 @@ jobs substantially.</p>
 <li>Deploying changes to document schemas</li>
 </ul>
 
-]]></content>
-  </entry>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
   
-</feed>
+
+<span class="byline author vcard">Posted by <span class="fn">Househappy Inc.</span></span>
+
+      
+
+
+
+
+<time class='entry-date' datetime='2015-08-18T16:36:26-07:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>18</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>4:36 pm</span></time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://dev-blog.househappy.org/blog/2015/08/18/elasticsearch-at-househappy/" data-via="" data-counturl="http://dev-blog.househappy.org/blog/2015/08/18/elasticsearch-at-househappy/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2015/08/18/elasticsearch-at-househappy/">How We Use Elasticsearch at Househappy</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating&#8230;</li>
+  </ul>
+  
+  <a href="https://github.com/househappy">@househappy</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'househappy',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2015 - Househappy Inc. -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>
