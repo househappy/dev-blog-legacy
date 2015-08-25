@@ -2,7 +2,7 @@
 
 ## Where
 
-The blog is hosted at http://househappy.github.io/
+The blog is hosted at http://dev-blog.househappy.org/
 
 ## Creating a post
 
