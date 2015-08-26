@@ -4,7 +4,7 @@
   <title><![CDATA[Househappy Tech Blog]]></title>
   <link href="http://dev-blog.househappy.org/atom.xml" rel="self"/>
   <link href="http://dev-blog.househappy.org/"/>
-  <updated>2015-08-26T08:36:27-07:00</updated>
+  <updated>2015-08-26T08:39:04-07:00</updated>
   <id>http://dev-blog.househappy.org/</id>
   <author>
     <name><![CDATA[Househappy Inc.]]></name>
@@ -49,7 +49,7 @@ the response from the API for the above query looks like this:</p>
 
 <p><img src="http://cl.ly/image/0w1u2j3g0y3x/cities-autocomplete-ui.jpg" alt="Cities matching &quot;port&quot;" /></p>
 
-<p>For autocomplete, The Elasticsearch query is a fully-analyzed text search.</p>
+<p>For autocomplete, the Elasticsearch query is a fully-analyzed text search.</p>
 
 <p><img src="http://cl.ly/image/0T1K1n0R3j3W/autocomplete_es_query.jpg" alt="Autocomplete Query to Elasticsearch" /></p>
 
