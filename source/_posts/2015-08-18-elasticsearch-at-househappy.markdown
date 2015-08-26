@@ -5,6 +5,7 @@ title: "How We use Elasticsearch at Househappy"
 date: 2015-08-18 16:36:26 -0700
 comments: true
 categories:
+author: Moxley Stratton
 ---
 Earlier in 2015, Househappy switched its search autocomplete from
 [Soulmate](https://github.com/seatgeek/soulmate) to
