@@ -89,7 +89,7 @@ denormalized data, site performance improved dramatically.
 
 We use the amazing
 [representable gem](https://github.com/apotonick/representable) to
-convert an ActiveRecord instance to an Elasticsearch document. This is the
+convert an ActiveRecord instance to an Elasticsearch document JSON. This is the
 same gem we use to serialize ActiveRecord instances to API responses, and to
 deserialize API requests to ActiveRecord instances.
 
