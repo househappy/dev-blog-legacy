@@ -146,7 +146,7 @@ meant to be written by programs instead of programmers.</p>
 
 <p><img src="http://cl.ly/image/1M2M1a2s3Y1L/search-results.jpg" alt="Primary Search Results" /></p>
 
-<p>The primary (&ldquo;gridview&rdquo;) search generates a much more simple Elasticsearch
+<p>The gridview search generates a much more simple Elasticsearch
 query than the autocomplete. It finds properties with an exact-match by foreign key:</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -192,7 +192,7 @@ query than the autocomplete. It finds properties with an exact-match by foreign 
 with a public status of <code>available</code>. We also add filters and sorting to this
 query, based on the filters and sorts the user selects.</p>
 
-<p>Before using Elasticsearch for the grid view, we queried PostgreSQL
+<p>Before using Elasticsearch for the gridview, we queried PostgreSQL
 directly. The primary table has millions of records, and the search query joined as
 many as 10 other tables. After switching to Elasticsearch for the query, using
 denormalized data, site performance improved dramatically.</p>
