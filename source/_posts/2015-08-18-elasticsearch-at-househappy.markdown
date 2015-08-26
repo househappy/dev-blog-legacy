@@ -35,7 +35,7 @@ For cities, it looks like this:
 
 ![Cities matching "port"](http://cl.ly/image/0w1u2j3g0y3x/cities-autocomplete-ui.jpg)
 
-For autocomplete, The Elasticsearch query is a fully-analyzed text search.
+For autocomplete, the Elasticsearch query is a fully-analyzed text search.
 
 ![Autocomplete Query to Elasticsearch](http://cl.ly/image/0T1K1n0R3j3W/autocomplete_es_query.jpg)
 
